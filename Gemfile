@@ -66,4 +66,4 @@ end
 
 gem "pg", "~> 1.6"
 
-gem "httparty", "~> 0.23.1"
+gem "httparty", "~> 0.23.2"
