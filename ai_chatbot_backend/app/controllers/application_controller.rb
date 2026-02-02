@@ -10,4 +10,8 @@ class ApplicationController < ActionController::Base
   def authenticate_admin_user!
     render json: { error: "Unauthorized" }, status: :unauthorized unless current_admin_user
   end
+
+  def csrf_token
+    render json: { csrfToken: form_authenticity_token }
+  end
 end
