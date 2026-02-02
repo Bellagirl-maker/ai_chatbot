@@ -11,8 +11,11 @@ export default function NewSupportArticle() {
 
     fetch("http://localhost:3000/admin/support_articles", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
       credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRF-Token": window.csrfToken
+      },
       body: JSON.stringify({
         support_article: { question, answer }
       })
