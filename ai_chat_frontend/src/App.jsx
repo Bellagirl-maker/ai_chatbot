@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 
 import Chat from "./Chat";
 import Login from "./Login";
-import Register from "./Register"
+import Register from "./Register";
 import AdminLayout from "./admin/AdminLayout";
 import SupportArticlesList from "./admin/SupportArticlesList";
 import NewSupportArticle from "./admin/NewSupportArticle";
@@ -12,7 +12,7 @@ export default function App() {
   const [admin, setAdmin] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  
+  // 1️⃣ Check if logged in
   useEffect(() => {
     fetch("http://localhost:3000/me", {
       credentials: "include",
@@ -32,6 +32,17 @@ export default function App() {
       });
   }, []);
 
+  // 2️⃣ FETCH CSRF TOKEN (ADD THIS)
+  useEffect(() => {
+    fetch("http://localhost:3000/csrf", {
+      credentials: "include",
+    })
+      .then(res => res.json())
+      .then(data => {
+        window.csrfToken = data.csrfToken;
+      });
+  }, []);
+
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -39,15 +50,11 @@ export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        {/* Public chatbot */}
         <Route path="/" element={<Chat />} />
 
-        {/* Login OR Register*/}
         <Route path="/login" element={<Login onLogin={setAdmin} />} />
         <Route path="/register" element={<Register onRegister={setAdmin} />} />
 
-
-        {/* Protected admin */}
         <Route
           path="/admin"
           element={admin ? <AdminLayout /> : <Navigate to="/login" />}
