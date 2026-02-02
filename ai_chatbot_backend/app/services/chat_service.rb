@@ -48,7 +48,8 @@ class ChatService
 
     return "AI Error: #{json["error"]["message"]}" if json["error"]
 
-    json.dig("choices", 0, "message", "content") || "AI Error: empty response"
+    json.dig("choices", 0, "message", "content") || "Sorry, I don’t have information about that yet."
+
   rescue => e
     "AI Error: #{e.message}"
   end
@@ -56,11 +57,12 @@ class ChatService
   private
 
   def load_company_support_text
-    return "No company-specific support data available." unless @company
+  return "No company-specific support data available." unless @company
 
-    articles = @company.support_articles
-    return "No support articles found for this company." if articles.empty?
+  articles = @company.support_articles.order(created_at: :desc).limit(10)
+  return "No support articles found for this company." if articles.empty?
 
-    articles.map { |a| "#{a.question}: #{a.answer}" }.join("\n\n")
-  end
+  articles.map { |a| "#{a.question}: #{a.answer}" }.join("\n\n")
+end
+
 end
