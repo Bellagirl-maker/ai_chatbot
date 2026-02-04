@@ -71,7 +71,7 @@ export default function Chat() {
       const res = await fetch("http://localhost:3000/chats", {
         method: "POST",
         credentials: "include",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json", "X-CSRF-Token": window.csrfToken},
         body: JSON.stringify({
           message: text,
           company_id: 1
