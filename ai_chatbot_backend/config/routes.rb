@@ -16,6 +16,7 @@ post "/payments/initialize", to: "payments#initialize_transaction"
 get "/payments/verify", to: "payments#verify"
 post "/paystack/webhook", to: "admin/paystack_webhooks#create"
 get "/csrf", to: "application#csrf_token"
+get "/", to: proc { [200, { "Content-Type" => "application/json" }, [{ status: "ok" }.to_json]] }
 
 
 
