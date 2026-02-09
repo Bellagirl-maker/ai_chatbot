@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import API_URL from "./config/api";
 
 export default function Login({ onLogin }) {
   const [email, setEmail] = useState("");
@@ -10,7 +11,7 @@ export default function Login({ onLogin }) {
   function handleSubmit(e) {
     e.preventDefault();
 
-    fetch("http://localhost:3000/session", {
+    fetch(`${API_URL}/session`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       credentials: "include",

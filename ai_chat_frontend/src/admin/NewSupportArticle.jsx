@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import API_URL from "../config/api";
 
 export default function NewSupportArticle() {
   const [question, setQuestion] = useState("");
@@ -9,7 +10,7 @@ export default function NewSupportArticle() {
   function handleSubmit(e) {
     e.preventDefault();
 
-    fetch("http://localhost:3000/admin/support_articles", {
+    fetch(`${API_URL}/admin/support_articles`, {
       method: "POST",
       credentials: "include",
       headers: {

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import API_URL from "../config/api";
 
 
 export default function SupportArticlesList() {
@@ -11,7 +12,7 @@ export default function SupportArticlesList() {
   const limitReached = articleLimit !== null && articlesUsed >= articleLimit;
 
   useEffect(() => {
-    fetch("http://localhost:3000/admin/support_articles", {
+    fetch(`${API_URL}/support_articles`, {
       credentials: "include"
     })
       .then(res => res.json())
@@ -77,7 +78,7 @@ export default function SupportArticlesList() {
                 <button
                   onClick={() => {
                     fetch(
-                      `http://localhost:3000/admin/support_articles/${a.id}`,
+                      `${API_URL}/admin/support_articles/${a.id}`,
                       {
                         method: "DELETE",
                         credentials: "include"

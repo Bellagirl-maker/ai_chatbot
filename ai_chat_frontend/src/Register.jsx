@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import API_URL from "./config/api";
 
 export default function Register({ onLogin }) {
   const [companyName, setCompanyName] = useState("");
@@ -11,7 +12,7 @@ export default function Register({ onLogin }) {
   function handleSubmit(e) {
     e.preventDefault();
 
-    fetch("http://localhost:3000/registrations", {
+    fetch(`${API_URL}/registrations`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       credentials: "include",

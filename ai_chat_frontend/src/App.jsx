@@ -7,6 +7,7 @@ import Register from "./Register";
 import AdminLayout from "./admin/AdminLayout";
 import SupportArticlesList from "./admin/SupportArticlesList";
 import NewSupportArticle from "./admin/NewSupportArticle";
+import API_URL from "./config/api";
 
 export default function App() {
   const [admin, setAdmin] = useState(null);
@@ -14,7 +15,7 @@ export default function App() {
 
   // 1️⃣ Check if logged in
   useEffect(() => {
-    fetch("http://localhost:3000/me", {
+    fetch(`${API_URL}/me`, {
       credentials: "include",
     })
       .then(res => {

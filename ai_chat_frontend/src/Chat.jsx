@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import userImg from "./assets/user.png";
 import botImg from "./assets/bot.png";
+import API_URL from "./config/api";
 
 export default function Chat() {
   const [messages, setMessages] = useState([]);
@@ -21,7 +22,7 @@ export default function Chat() {
   useEffect(() => {
     async function loadHistory() {
       try {
-        const res = await fetch("http://localhost:3000/chats", {
+        const res = await fetch(`${API_URL}/chats`, {
           credentials: "include"
         });
         const data = await res.json();
