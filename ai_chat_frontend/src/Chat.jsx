@@ -69,7 +69,7 @@ export default function Chat() {
     setShowUpgrade(false);
 
     try {
-      const res = await fetch("http://localhost:3000/chats", {
+      const res = await fetch(`${API_URL}/chats`, {
         method: "POST",
         credentials: "include",
         headers: { "Content-Type": "application/json", "X-CSRF-Token": window.csrfToken},
@@ -128,7 +128,7 @@ export default function Chat() {
 
   const upgradePlan = async () => {
     try {
-      const res = await fetch("http://localhost:3000/admin/upgrade", {
+      const res = await fetch(`${API_URL}/admin/upgrade`, {
         method: "POST",
         credentials: "include",
         headers: { "Content-Type": "application/json" }

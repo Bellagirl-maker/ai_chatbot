@@ -35,7 +35,7 @@ export default function App() {
 
   // 2️⃣ FETCH CSRF TOKEN (ADD THIS)
   useEffect(() => {
-    fetch("http://localhost:3000/csrf", {
+    fetch(`${API_URL}/csrf`, {
       credentials: "include",
     })
       .then(res => res.json())
